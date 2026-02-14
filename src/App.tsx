@@ -4,7 +4,8 @@ import { Heart, HeartCrack, Stars, Sparkles, RefreshCw, Lock, MessageCircleHeart
 import confetti from 'canvas-confetti';
 
 // --- Types ---
-type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
+type Step = 0 | 1 | 2 | 3 | 4 | 5 | 6 | 7;
+const pwd = "1226";
 
 // --- Feedback Messages ---
 const FEEDBACKS = {
@@ -170,12 +171,13 @@ const generatePoem = async (apiKey: string) => {
 // --- Main App ---
 
 export default function App() {
-  const [step, setStep] = useState<Step>(1);
+  const [step, setStep] = useState<Step>(0);
   const [badBtnState, setBadBtnState] = useState({ scale: 1, x: 0, y: 0 });
   const [yesBtnState, setYesBtnState] = useState({ scale: 1, x: 0, y: 0, clicks: 0 });
   const [toastMessage, setToastMessage] = useState("");
   const [poem, setPoem] = useState<string>("");
   const [loadingPoem, setLoadingPoem] = useState(false);
+  const [pwdValue, setPwdValue] = useState("");
   const apiKey = ""; // API Key handled by environment
 
   // Reset states when changing steps
@@ -239,6 +241,17 @@ export default function App() {
     setTimeout(() => {
       setStep(1);
     }, 2500);
+  };
+  
+  const handlePwdSubmit = () => {
+    if(pwd === pwdValue){
+      setToastMessage("Logged in successfully🔐");
+      setTimeout(() => {
+        setStep(1);
+      }, 2500);
+    } else {
+      setToastMessage("Wrong password, try again biko🔒");
+    }
   };
 
   const fetchPoem = async () => {
@@ -475,6 +488,46 @@ export default function App() {
             </div>
           </GlassCard>
         )}
+
+        {/* STEP 0: Valentine decline */}
+{step === 0 && (
+  <GlassCard key="step0">
+    <motion.div 
+      animate={{ scale: [1, 1.1, 1] }} 
+      transition={{ repeat: Infinity, duration: 2 }}
+    >
+      <Lock className="w-16 h-16 text-pink-500 mx-auto mb-4" />
+    </motion.div>
+    
+    <h2 className="text-2xl font-bold mb-2 font-[serif]">Security Check 🔐</h2>
+    <p className="text-gray-400 mb-6 text-sm">Enter your 4-digit secret code to proceed</p>
+
+    <div className="flex flex-col items-center gap-6">
+      <input
+        type="text"
+        maxLength={4}
+        placeholder="••••"
+        className="w-40 text-center text-3xl tracking-[1rem] py-3 bg-white/5 border-2 border-white/10 rounded-2xl focus:border-pink-500 outline-none transition-all font-mono placeholder:text-gray-600"
+        onChange={(e) => {
+          const val = e.target.value.replace(/\D/g, ''); // Only allow digits
+          setPwdValue(val);
+        }}
+        inputMode="numeric"
+      />
+
+      <div className="flex flex-col gap-3 w-full items-center">
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          onClick={handlePwdSubmit}
+          className="bg-gradient-to-r from-pink-500 to-rose-500 text-white font-bold py-3 px-10 rounded-full shadow-lg shadow-pink-500/20"
+        >
+          Unlock
+        </motion.button>
+      </div>
+    </div>
+  </GlassCard>
+)}
 
       </AnimatePresence>
     </div>
