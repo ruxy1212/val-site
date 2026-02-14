@@ -449,11 +449,11 @@ export default function App() {
         {step === 7 && (
           <GlassCard key="step7">
             <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.5 }}>
-              <HeartCrack className="w-16 h-16 text-red-500 fill-red-500 mx-auto mb-4" />
+              <HeartCrack className="w-16 h-16 text-red-500 mx-auto mb-4" />
             </motion.div>
             <h2 className="text-3xl font-bold mb-8 font-[serif]">Oga na, e go dey be ✌️</h2>
             
-            <div className="h-48 relative w-full flex justify-center items-center">
+            <div className="h-24 relative w-full flex justify-center items-center">
               {/* NO Button (Triggers Sad Reset) */}
               <motion.button
                 whileHover={{ scale: 0.95 }}
