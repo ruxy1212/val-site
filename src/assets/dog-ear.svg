@@ -3,21 +3,22 @@
   <defs>
     <!-- Gradient for flap underside -->
     <linearGradient id="curlGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="gray"/>
-      <stop offset="100%" stop-color="white"/>
+      <stop offset="0%" stop-color="#c6005c"/>
+      <stop offset="90%" stop-color="#c6005c" />
+      <stop offset="100%" stop-color="#888"/>
     </linearGradient>
 
     <!-- Subtle shadow for flap -->
     <filter id="foldShadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000" flood-opacity="0.3"/>
+      <feDropShadow dx="0" dy="1" stdDeviation="1" flood-color="#000" flood-opacity="0.4"/>
     </filter>
   </defs>
 
   <!-- Black background -->
-  <rect width="100" height="100" fill="white"/>
+  <polygon points="100,100 100,0 0,100" fill="#eee"/>
 
   <!-- Red page front -->
-  <polygon points="0,0 0,100 100,0" fill="#c6005c"/>
+  <polygon points="0,0 0,100 100,0" fill="none"/>
 
   <!-- Peeled flap on top -->
   <path
