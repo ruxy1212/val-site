@@ -3,7 +3,7 @@ import './index.css'
 import App from './App.tsx'
 
 const GithubDogEar = () => {
-  const foldSize = 100;
+ // const foldSize = 100;
   return (
     <div style={{
       position: 'fixed',
