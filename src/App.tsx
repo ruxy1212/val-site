@@ -38,6 +38,16 @@ const FEEDBACKS = {
   ]
 };
 
+const poems = [
+  "Roses are red, violets are blue, even offline, my heart chooses you.",
+  "Even if National Grid falls, my love for you stays 100% charged. No NEPA can dim this light!",
+  "You are the extra piece of meat at the bottom of my party Jollof—unexpected, thrilling, and the best part of my day.",
+  "My love for you is like a Danfo driver in Lagos traffic: determined, unstoppable, and always finding a way where there is no way!",
+  "Omo, the way my heart beats for you, even 10,000 generators cannot make this much noise. You're the ultimate 'Gbosa!'",
+  "They said 'Japa', but I'm staying right here in the 'Abule' of your heart. No visa required for this love.",
+  "You're more refreshing than a chilled bottle of Maltina after a long trek in the 2:00 PM Lagos sun. Pure premium enjoyment!"
+];
+
 // --- Assets & Helpers ---
 
 const triggerConfetti = () => {
@@ -154,7 +164,7 @@ const generatePoem = async (apiKey: string) => {
     const data = await response.json();
     return data.candidates?.[0]?.content?.parts?.[0]?.text;
   } catch (e) {
-    return "Roses are red, violets are blue, even offline, my heart chooses you.";
+    return poems[Math.floor(Math.random() * poems.length)];
   }
 };
 
@@ -406,21 +416,27 @@ export default function App() {
               </div>
 
               <h1 className="text-5xl md:text-6xl font-extrabold mb-4 font-[serif] text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-white to-pink-200">
-                My Heart Chooses You
+                My Heart Chooses You Too
               </h1>
               
               <p className="text-xl text-pink-100 mb-6 font-light leading-relaxed">
                 Loving you feels natural like breathing, like home, like forever.
               </p>
-              
-              <div className="bg-white/10 p-6 rounded-2xl border border-white/20 mb-8 backdrop-blur-md">
-                <p className="font-[serif] text-2xl italic text-white/90">
-                  "If love had a name, it would sound exactly like yours."
-                </p>
-              </div>
+              {poem && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-pink-900/30 p-4 rounded-xl mt-2 border border-pink-500/20">
+                  <p className="text-pink-100 font-serif italic text-lg leading-relaxed">{poem}</p>
+                </motion.div>
+              )}
+              {!poem && (
+                <div className="bg-white/10 p-6 rounded-2xl border border-white/20 mb-8 backdrop-blur-md">
+                  <p className="font-[serif] text-2xl italic text-white/90">
+                    "If love had a name, it would sound exactly like yours."
+                  </p>
+                </div>
+              )}
 
               <div className="mt-8 border-t border-white/10 pt-6">
-                 {!poem && !loadingPoem && (
+                 {!loadingPoem && (
                    <button 
                     onClick={fetchPoem}
                     className="text-sm flex items-center justify-center gap-2 mx-auto text-pink-200 hover:text-white transition-colors"
@@ -432,11 +448,6 @@ export default function App() {
                     <div className="flex items-center justify-center gap-2 text-pink-200">
                       <RefreshCw className="animate-spin" size={16} /> Writing...
                     </div>
-                 )}
-                 {poem && (
-                   <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="bg-pink-900/30 p-4 rounded-xl mt-2 border border-pink-500/20">
-                     <p className="text-pink-100 font-serif italic text-lg leading-relaxed">{poem}</p>
-                   </motion.div>
                  )}
               </div>
 
