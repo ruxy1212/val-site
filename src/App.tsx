@@ -507,7 +507,7 @@ export default function App() {
         type="text"
         maxLength={4}
         placeholder="••••"
-        className="w-40 text-center text-3xl tracking-[1rem] py-3 bg-white/5 border-2 border-white/10 rounded-2xl focus:border-pink-500 outline-none transition-all font-mono placeholder:text-gray-600"
+        className="w-40 text-center text-3xl tracking-[1rem] py-3 bg-white/5 border-2 border-white/10 rounded-2xl focus:border-pink-500 outline-none transition-all font-mono placeholder:text-gray-100"
         onChange={(e) => {
           const val = e.target.value.replace(/\D/g, ''); // Only allow digits
           setPwdValue(val);
