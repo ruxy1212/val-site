@@ -149,7 +149,6 @@ const GlassCard = ({ children, className = "" }: { children: React.ReactNode, cl
 
 // --- Gemini API ---
 const generatePoem = async (apiKey: string) => {
-  if (!apiKey) return "";
   try {
     const response = await fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`,
@@ -245,7 +244,7 @@ export default function App() {
   const fetchPoem = async () => {
     setLoadingPoem(true);
     const text = await generatePoem(apiKey);
-    setPoem(text || "You are my sunshine, my only sunshine. You make me happy when skies are grey.");
+    setPoem(text || poems[Math.floor(Math.random() * poems.length)] || "You are my sunshine, my only sunshine. You make me happy when skies are grey.");
     setLoadingPoem(false);
   };
 
