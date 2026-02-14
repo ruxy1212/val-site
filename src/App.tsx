@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Heart, Stars, Sparkles, RefreshCw, Lock, MessageCircleHeart } from 'lucide-react';
+import { Heart, HeartCrack, Stars, Sparkles, RefreshCw, Lock, MessageCircleHeart } from 'lucide-react';
 import confetti from 'canvas-confetti';
 
 // --- Types ---
-type Step = 1 | 2 | 3 | 4 | 5 | 6;
+type Step = 1 | 2 | 3 | 4 | 5 | 6 | 7;
 
 // --- Feedback Messages ---
 const FEEDBACKS = {
@@ -199,7 +199,7 @@ export default function App() {
     setToastMessage("I don't blame you 😢");
     triggerSadConfetti();
     setTimeout(() => {
-      setStep(1);
+      setStep(7);
     }, 2500);
   };
 
@@ -222,6 +222,14 @@ export default function App() {
         clicks: yesBtnState.clicks + 1
       });
     }
+  };
+
+  // Step 7: The "Change mind" button resets everything
+  const handleChangeButton = () => {
+    setToastMessage("Ahah! thank youuuuuu 😘");
+    setTimeout(() => {
+      setStep(1);
+    }, 2500);
   };
 
   const fetchPoem = async () => {
@@ -434,6 +442,27 @@ export default function App() {
 
               <div className="mt-8 text-xs text-white/50 tracking-widest uppercase">Forever & Always</div>
             </motion.div>
+          </GlassCard>
+        )}
+
+        {/* STEP 7: Valentine decline */}
+        {step === 7 && (
+          <GlassCard key="step7">
+            <motion.div animate={{ scale: [1, 1.2, 1] }} transition={{ repeat: Infinity, duration: 1.5 }}>
+              <HeartCrack className="w-16 h-16 text-red-500 fill-red-500 mx-auto mb-4" />
+            </motion.div>
+            <h2 className="text-3xl font-bold mb-8 font-[serif]">Oga na, e go dey be ✌️</h2>
+            
+            <div className="h-48 relative w-full flex justify-center items-center">
+              {/* NO Button (Triggers Sad Reset) */}
+              <motion.button
+                whileHover={{ scale: 0.95 }}
+                onClick={handleChangeButton}
+                className="absolute z-10 top-24 bg-gray-800/50 hover:bg-gray-800/80 text-gray-300 w-32 py-2 rounded-full backdrop-blur-md border border-white/10"
+              >
+                Change Mind
+              </motion.button>
+            </div>
           </GlassCard>
         )}
 
