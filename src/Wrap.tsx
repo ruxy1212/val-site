@@ -10,9 +10,9 @@ const GithubDogEar = () => {
      <div className="absolute bottom-0 right-0 z-50 w-24 md:w-36">
       <div className="relative w-full">
        <img src={dogEar} className="w-full" />
-       <button className="absolute top-2 right-2">
-        <Github size={20} />
-       </button>
+       <a href="https://github.com/ruxy1212/val-site/fork" target="_blank" className="absolute bottom-2 right-2">
+        <Github size={24} />
+       </a>
       </div>
      </div>
         <App />
