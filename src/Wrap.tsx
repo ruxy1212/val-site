@@ -1,4 +1,3 @@
-import React from 'react';
 import { Github } from 'lucide-react';
 import './index.css'
 import App from './App.tsx'
